@@ -20,9 +20,11 @@ jobs:
         with:
           dotnet-version: '8.0.x'
 
-      # Setup ChromeDriver for Selenium tests
+      # Setup ChromeDriver
       - name: Setup ChromeDriver
-        uses: nanasess/setup-chromedriver@v1
+        uses: seleniumhq/setup-chromedriver@v1
+        with:
+          chrome-version: 'latest'  # Installs the latest Chrome and ChromeDriver
 
       # Restore dependencies for all projects in the repository
       - name: Restore dependencies
