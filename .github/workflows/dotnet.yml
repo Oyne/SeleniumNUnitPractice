@@ -50,4 +50,4 @@ jobs:
 
       # Run tests with detailed verbosity
       - name: Run tests with detailed verbosity
-        run: dotnet test --no-build --verbosity detailed
+        run: dotnet test --no-build --verbosity detailed --logger "console;verbosity=detailed"
