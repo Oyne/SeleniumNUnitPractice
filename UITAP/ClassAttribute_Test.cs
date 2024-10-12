@@ -10,9 +10,9 @@ namespace UITAP
         public void Setup()
         {
             ChromeOptions chromeOptions = new ChromeOptions();
-            chromeOptions.AddArgument("--headless"); // Run Chrome in headless mode
-            chromeOptions.AddArgument("--no-sandbox"); // Bypass OS security model
-            chromeOptions.AddArgument("--disable-dev-shm-usage"); // Overcome limited resource issue
+            //chromeOptions.AddArgument("--headless"); // Run Chrome in headless mode
+            //chromeOptions.AddArgument("--no-sandbox"); // Bypass OS security model
+            //chromeOptions.AddArgument("--disable-dev-shm-usage"); // Overcome limited resource issue
             _driver = new ChromeDriver(chromeOptions);
             _driver.Navigate().GoToUrl("http://uitestingplayground.com/classattr");
         }
@@ -27,7 +27,7 @@ namespace UITAP
         public void ClassAttribute_Test()
         {
             var driver = _driver;
-            var buttonXpath = "//button[contains(concat(' ', normalize-space(@class), ' '), ' btn-primary ')]";
+            string buttonXpath = "//button[contains(concat(' ', normalize-space(@class), ' '), ' btn-primary ')]";
             IWebElement button = driver.FindElement(By.XPath(buttonXpath));
             Assert.That(button.Enabled);
             button.Click();
