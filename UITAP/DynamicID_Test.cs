@@ -28,7 +28,7 @@ namespace UITAP
             var buttonXpath = "//button[contains(@class,\"btn-primary\")]";
             IWebElement button = driver.FindElement(By.XPath(buttonXpath));
             button.Click();
-            Assert.That(button.Enabled);
+            Assert.That(!button.Enabled);
         }
     }
 }
