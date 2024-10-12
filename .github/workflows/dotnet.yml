@@ -8,18 +8,21 @@ on:
 
 jobs:
   build-and-test:
-
     runs-on: ubuntu-latest
 
     steps:
       # Check out the repository
       - uses: actions/checkout@v4
 
-      # Set up the .NET SDK version (adjust the version as needed)
+      # Set up the .NET SDK version
       - name: Setup .NET
         uses: actions/setup-dotnet@v4
         with:
           dotnet-version: '8.0.x'
+
+      # Setup ChromeDriver for Selenium tests
+      - name: Setup ChromeDriver
+        uses: nanasess/setup-chromedriver@v1
 
       # Restore dependencies for all projects in the repository
       - name: Restore dependencies
@@ -29,6 +32,6 @@ jobs:
       - name: Build
         run: dotnet build --no-restore
 
-      # Run tests in all test projects in the repository
+      # Run tests in all test projects with detailed logging
       - name: Run tests
-        run: dotnet test --no-build --verbosity normal
+        run: dotnet test --no-build --verbosity detailed
