@@ -14,17 +14,21 @@ jobs:
       # Check out the repository
       - uses: actions/checkout@v4
 
-      # Set up the .NET SDK version
+      # Set up the .NET SDK version (adjust as needed)
       - name: Setup .NET
         uses: actions/setup-dotnet@v4
         with:
           dotnet-version: '8.0.x'
 
-      # Setup ChromeDriver
-      - name: Setup ChromeDriver
-        uses: seleniumhq/setup-chromedriver@v1
-        with:
-          chrome-version: 'latest'  # Installs the latest Chrome and ChromeDriver
+      # Manually install ChromeDriver
+      - name: Install ChromeDriver
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y unzip
+          wget -N https://chromedriver.storage.googleapis.com/$(curl -s https://chromedriver.storage.googleapis.com/LATEST_RELEASE)/chromedriver_linux64.zip
+          unzip chromedriver_linux64.zip
+          sudo mv -f chromedriver /usr/local/bin/chromedriver
+          sudo chmod +x /usr/local/bin/chromedriver
 
       # Restore dependencies for all projects in the repository
       - name: Restore dependencies
