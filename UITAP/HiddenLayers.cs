@@ -27,8 +27,8 @@ namespace UITAP
         public void HiddenLayers_Test()
         {
             var driver = _driver;
-            string buttonXpath = "//*[@id=\"greenButton\"]";
-            IWebElement button = driver.FindElement(By.XPath(buttonXpath));
+            string buttonId = "greenButton";
+            IWebElement button = driver.FindElement(By.Id(buttonId));
             button.Click();
             Assert.Throws<ElementClickInterceptedException>(button.Click);
         }

@@ -28,8 +28,8 @@ namespace UITAP
         public void Click_Test()
         {
             var driver = _driver;
-            string buttonXpath = "//*[@id=\"badButton\"]";
-            IWebElement button = driver.FindElement(By.XPath(buttonXpath));
+            string buttonId = "badButton";
+            IWebElement button = driver.FindElement(By.Id(buttonId));
             button.Click();
             button.Click();
             Assert.That(button.Enabled && button.Displayed);

@@ -28,10 +28,10 @@ namespace UITAP
         public void TextInput_Test()
         {
             var driver = _driver;
-            string inputFieldXpath = "//*[@id=\"newButtonName\"]";
-            string buttonXpath = "//*[@id=\"updatingButton\"]";
-            IWebElement inputField = driver.FindElement(By.XPath(inputFieldXpath));
-            IWebElement button = driver.FindElement(By.XPath(buttonXpath));
+            string inputFieldId = "newButtonName";
+            string buttonId = "updatingButton";
+            IWebElement inputField = driver.FindElement(By.Id(inputFieldId));
+            IWebElement button = driver.FindElement(By.Id(buttonId));
             inputField.SendKeys("Test");
             button.Click();
             Assert.That(button.Text == "Test");
