@@ -29,7 +29,7 @@ namespace UITAP
             var driver = _driver;
             string buttonXpath = "//button[contains(concat(' ', normalize-space(@class), ' '), ' btn-primary ')]";
             IWebElement button = driver.FindElement(By.XPath(buttonXpath));
-            Assert.That(button.Enabled);
+            Assert.That(button.Enabled && button.Displayed);
             button.Click();
         }
     }
