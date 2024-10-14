@@ -11,7 +11,7 @@ namespace UITAP
         public void Setup()
         {
             ChromeOptions chromeOptions = new ChromeOptions();
-            //chromeOptions.AddArgument("--headless"); // Run Chrome in headless mode
+            chromeOptions.AddArgument("--headless=old"); // Run Chrome in headless mode
             //chromeOptions.AddArgument("--no-sandbox"); // Bypass OS security model
             //chromeOptions.AddArgument("--disable-dev-shm-usage"); // Overcome limited resource issue
             _driver = new ChromeDriver(chromeOptions);
