@@ -27,8 +27,8 @@ namespace UITAP
         public void ClassAttribute_Test()
         {
             var driver = _driver;
-            string buttonXpath = "//button[contains(concat(' ', normalize-space(@class), ' '), ' btn-primary ')]";
-            IWebElement button = driver.FindElement(By.XPath(buttonXpath));
+            string buttonXPath = "//button[contains(concat(' ', normalize-space(@class), ' '), ' btn-primary ')]";
+            IWebElement button = driver.FindElement(By.XPath(buttonXPath));
             Assert.That(button.Enabled && button.Displayed);
             button.Click();
         }

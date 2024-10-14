@@ -29,12 +29,12 @@ namespace UITAP
         public void LoadDelay_Test()
         {
             var driver = _driver;
-            string loadButtonXpath = "//*[@id=\"overview\"]/div/div[1]/div[4]/h3/a";
-            IWebElement loadButton = driver.FindElement(By.XPath(loadButtonXpath));
+            string loadButtonXPath = "//*[@id=\"overview\"]/div/div[1]/div[4]/h3/a";
+            IWebElement loadButton = driver.FindElement(By.XPath(loadButtonXPath));
             loadButton.Click();
-            string buttonXpath = "//button[contains(@class,\"btn-primary\")]";
+            string buttonXPath = "//button[contains(@class,\"btn-primary\")]";
             WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
-            IWebElement button = wait.Until(driver => driver.FindElement(By.XPath(buttonXpath)));
+            IWebElement button = wait.Until(driver => driver.FindElement(By.XPath(buttonXPath)));
             button.Click();
             Assert.That(button.Enabled && button.Displayed);
         }

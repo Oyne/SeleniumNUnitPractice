@@ -27,8 +27,8 @@ namespace UITAP
         public void DynamicID_Test()
         {
             var driver = _driver;
-            string buttonXpath = "//button[contains(@class,\"btn-primary\")]";
-            IWebElement button = driver.FindElement(By.XPath(buttonXpath));
+            string buttonXPath = "//button[contains(@class,\"btn-primary\")]";
+            IWebElement button = driver.FindElement(By.XPath(buttonXPath));
             button.Click();
             Assert.That(button.Enabled && button.Displayed);
         }
