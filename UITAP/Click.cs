@@ -1,8 +1,9 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
+
 namespace UITAP
 {
-    public class ClassAttribute
+    internal class Click
     {
         private IWebDriver _driver;
 
@@ -14,7 +15,7 @@ namespace UITAP
             //chromeOptions.AddArgument("--no-sandbox"); // Bypass OS security model
             //chromeOptions.AddArgument("--disable-dev-shm-usage"); // Overcome limited resource issue
             _driver = new ChromeDriver(chromeOptions);
-            _driver.Navigate().GoToUrl("http://uitestingplayground.com/classattr");
+            _driver.Navigate().GoToUrl("http://uitestingplayground.com/click");
         }
 
         [TearDown]
@@ -24,13 +25,14 @@ namespace UITAP
         }
 
         [Test]
-        public void ClassAttribute_Test()
+        public void Click_Test()
         {
             var driver = _driver;
-            string buttonXPath = "//button[contains(concat(' ', normalize-space(@class), ' '), ' btn-primary ')]";
-            IWebElement button = driver.FindElement(By.XPath(buttonXPath));
-            Assert.That(button.Enabled && button.Displayed);
+            string buttonId = "badButton";
+            IWebElement button = driver.FindElement(By.Id(buttonId));
             button.Click();
+            button.Click();
+            Assert.That(button.Enabled && button.Displayed);
         }
     }
 }

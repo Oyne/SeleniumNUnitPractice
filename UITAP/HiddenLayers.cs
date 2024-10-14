@@ -10,9 +10,9 @@ namespace UITAP
         public void Setup()
         {
             ChromeOptions chromeOptions = new ChromeOptions();
-            chromeOptions.AddArgument("--headless"); // Run Chrome in headless mode
-            chromeOptions.AddArgument("--no-sandbox"); // Bypass OS security model
-            chromeOptions.AddArgument("--disable-dev-shm-usage"); // Overcome limited resource issue
+            chromeOptions.AddArgument("--headless=old"); // Run Chrome in headless mode
+            //chromeOptions.AddArgument("--no-sandbox"); // Bypass OS security model
+            //chromeOptions.AddArgument("--disable-dev-shm-usage"); // Overcome limited resource issue
             _driver = new ChromeDriver(chromeOptions);
             _driver.Navigate().GoToUrl("http://uitestingplayground.com/hiddenlayers");
         }
@@ -27,8 +27,8 @@ namespace UITAP
         public void HiddenLayers_Test()
         {
             var driver = _driver;
-            var buttonXpath = "//*[@id=\"greenButton\"]";
-            IWebElement button = driver.FindElement(By.XPath(buttonXpath));
+            string buttonId = "greenButton";
+            IWebElement button = driver.FindElement(By.Id(buttonId));
             button.Click();
             Assert.Throws<ElementClickInterceptedException>(button.Click);
         }

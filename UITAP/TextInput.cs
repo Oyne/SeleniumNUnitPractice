@@ -1,8 +1,9 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
+
 namespace UITAP
 {
-    public class ClassAttribute
+    internal class TextInput
     {
         private IWebDriver _driver;
 
@@ -14,7 +15,7 @@ namespace UITAP
             //chromeOptions.AddArgument("--no-sandbox"); // Bypass OS security model
             //chromeOptions.AddArgument("--disable-dev-shm-usage"); // Overcome limited resource issue
             _driver = new ChromeDriver(chromeOptions);
-            _driver.Navigate().GoToUrl("http://uitestingplayground.com/classattr");
+            _driver.Navigate().GoToUrl("http://uitestingplayground.com/textinput?");
         }
 
         [TearDown]
@@ -24,13 +25,16 @@ namespace UITAP
         }
 
         [Test]
-        public void ClassAttribute_Test()
+        public void TextInput_Test()
         {
             var driver = _driver;
-            string buttonXPath = "//button[contains(concat(' ', normalize-space(@class), ' '), ' btn-primary ')]";
-            IWebElement button = driver.FindElement(By.XPath(buttonXPath));
-            Assert.That(button.Enabled && button.Displayed);
+            string inputFieldId = "newButtonName";
+            string buttonId = "updatingButton";
+            IWebElement inputField = driver.FindElement(By.Id(inputFieldId));
+            IWebElement button = driver.FindElement(By.Id(buttonId));
+            inputField.SendKeys("Test");
             button.Click();
+            Assert.That(button.Text == "Test");
         }
     }
 }

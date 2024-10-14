@@ -1,8 +1,10 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
+using OpenQA.Selenium.Support.UI;
+
 namespace UITAP
 {
-    public class ClassAttribute
+    internal class LoadDelay
     {
         private IWebDriver _driver;
 
@@ -14,7 +16,7 @@ namespace UITAP
             //chromeOptions.AddArgument("--no-sandbox"); // Bypass OS security model
             //chromeOptions.AddArgument("--disable-dev-shm-usage"); // Overcome limited resource issue
             _driver = new ChromeDriver(chromeOptions);
-            _driver.Navigate().GoToUrl("http://uitestingplayground.com/classattr");
+            _driver.Navigate().GoToUrl("http://uitestingplayground.com/");
         }
 
         [TearDown]
@@ -24,13 +26,17 @@ namespace UITAP
         }
 
         [Test]
-        public void ClassAttribute_Test()
+        public void LoadDelay_Test()
         {
             var driver = _driver;
-            string buttonXPath = "//button[contains(concat(' ', normalize-space(@class), ' '), ' btn-primary ')]";
-            IWebElement button = driver.FindElement(By.XPath(buttonXPath));
-            Assert.That(button.Enabled && button.Displayed);
+            string loadButtonXPath = "//*[@id=\"overview\"]/div/div[1]/div[4]/h3/a";
+            IWebElement loadButton = driver.FindElement(By.XPath(loadButtonXPath));
+            loadButton.Click();
+            string buttonXPath = "//button[contains(@class,\"btn-primary\")]";
+            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
+            IWebElement button = wait.Until(driver => driver.FindElement(By.XPath(buttonXPath)));
             button.Click();
+            Assert.That(button.Enabled && button.Displayed);
         }
     }
 }
